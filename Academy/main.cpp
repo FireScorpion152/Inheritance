@@ -3,6 +3,7 @@
 using std::cin;
 using std::cout;
 using std::endl;
+#define delimiter "\n---------------------------------------------\n"
 
 #define HUMAN_TAKE_PARAMETERS const std::string& last_name, const std::string& first_name, int age
 #define HUMAN_GIVE_PARAMETERS last_name, first_name, age
@@ -52,14 +53,17 @@ public:
 	}
 
 	//				Methods:
-	void print()const
-	{
-		cout << last_name << " " << first_name << " " << age << endl;
+	virtual std::ostream& print(std::ostream& os)const{
+		return os << last_name << " " << first_name << " " << age;
 	}
 };
+
+std::ostream& operator<<(std::ostream& os, const Human& obj) {
+	return obj.print(os);
+}
+
 #define STUDENT_TAKE_PARAMETERS const std::string& speciality, const std::string& group, double rating, double attendance
 #define STUDENT_GIVE_PARAMETERS speciality, group, rating, attendance
-
 class Student : public Human
 {
 	std::string speciality;
@@ -115,10 +119,8 @@ public:
 	}
 
 	//				Methods:
-	void print()const
-	{
-		Human::print();
-		cout << speciality << " " << group << " " << rating << " " << attendance << endl;
+	std::ostream& print(std::ostream& os)const override	{
+		return Human::print(os) << " " << speciality << " " << group << " " << rating << " " << attendance;
 	}
 };
 
@@ -159,36 +161,34 @@ public:
 	}
 
 	//					Methods:
-	void print()const
-	{
-		Human::print();
-		cout << speciality << " " << experience << " years" << endl;
+	std::ostream& print(std::ostream& os)const override{
+		return Human::print(os)<< " " << speciality << " " << experience << " years";
 	}
 };
 
-#define GRADUATE_TAKE_PARAMETERS const std::string& topic
-#define GRADUATE_GIVE_PARAMETERS topic
+#define GRADUATE_TAKE_PARAMETERS const std::string& subject
+#define GRADUATE_GIVE_PARAMETERS subject
 class Graduate :public Student
 {
-	std::string topic;
+	std::string subject;
 public:
-	const std::string& get_topic()const
+	const std::string& get_subject()const
 	{
-		return topic;
+		return subject;
 	}
-	void set_topic(const std::string& topic)
+	void set_subject(const std::string& subject)
 	{
-		this->topic = topic;
+		this->subject = subject;
 	}
 
 	//			Constructors:
 	Graduate(HUMAN_TAKE_PARAMETERS, STUDENT_TAKE_PARAMETERS, GRADUATE_TAKE_PARAMETERS) : Student(HUMAN_GIVE_PARAMETERS, STUDENT_GIVE_PARAMETERS){
-		set_topic(topic);
+		set_subject(subject);
 		cout << "GConstructor:\t" << this << endl;
 	}
-	Graduate(const Student& student, const std::string& topic) :Student(student)
+	Graduate(const Student& student, const std::string& subject) :Student(student)
 	{
-		set_topic(topic);
+		set_subject(subject);
 		cout << "GConstructor:\t" << this << endl;
 	}
 	~Graduate()
@@ -197,16 +197,28 @@ public:
 	}
 
 	//					Methods:
-	void print()const
+	std::ostream& print(std::ostream& os)const override
 	{
-		Student::print();
-		cout <<"Topic of diploma is '" << topic << "'" << endl;
+		return Student::print(os)<< " " << "Subject of diploma is '" << subject << "'";
 	}
 };
-#define delimiter "---------------------------------------------"
+
+void Print(Human* group[], int n) {
+	for (int i = 0; i < n; i++) {
+		cout << *group[i] << endl;
+		cout << delimiter << endl;
+	}
+}
+void Clear(Human* group[], int n) {
+	for (int i = 0; i < sizeof(group) / sizeof(group[0]); i++) {
+		delete group[i];
+	}
+}
+//#define INHERITANCE
 void main()
 {
 	setlocale(LC_ALL, "");
+#ifdef INHERITANCE
 	cout << "HelloAcademy" << endl;
 	Human human("Richter", "Jeffrey", 40);
 	human.print();
@@ -217,8 +229,20 @@ void main()
 	Teacher teacher("White", "Walter", 50, "Chemistry", 25);
 	teacher.print();
 	cout << delimiter << endl;
-	Graduate graduate2("Storm", "Left", 23, "Chemistry", "WW", 54, 77, "OOP");
-	Graduate graduate(student, "Danger of metals");
-	graduate.print();
+	Graduate graduate2("Shrader", "Hank", 53, "Criminalistic", "OBN", 70, 75, "How to catch Heisenberg");
+	graduate2.print();
+#endif // INHERITANCE
+	Human* group[] = {
 
+	new Student("Pinkman", "Jessie", 20, "Chemistry", "WW_220", 95, 90),
+	new Teacher("White", "Walter", 50, "Chemistry", 25),
+	new Graduate("Shrader", "Hank", 53, "Criminalistic", "OBN", 70, 75, "How to catch Heisenberg"),
+	new Student("Vercetti", "Tom", 30, "Theft", "Vice", 97,98),
+	new Teacher("Diaz", "Ricardo", 50, "Weapons Distribution",20)
+	};
+	cout << delimiter << endl;
+	Print(group, sizeof(group) / sizeof(group[0]));
+	cout << delimiter << endl;
+	Clear(group, sizeof(group) / sizeof(group[0]));
+	cout << delimiter << endl;
 }

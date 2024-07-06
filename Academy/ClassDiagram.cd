@@ -7,13 +7,6 @@
       <FileName>main.cpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Student">
-    <Position X="4.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>QQ4AAAAAQAAAAAAABAAAgABAAQQAAAAAQAAEAAAAEAA=</HashCode>
-      <FileName>main.cpp</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Teacher">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
@@ -24,7 +17,14 @@
   <Class Name="Graduate">
     <Position X="6.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAQAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAIIAA=</HashCode>
+      <HashCode>AAYAAAAAAAAAAAAAAAAAAACAACAAAAAAAAAAAAAIIAA=</HashCode>
+      <FileName>main.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Student">
+    <Position X="4.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQ4AAAAAQAAAAAAABAAAgABAAQQAAAAAQAAEAAAAEAA=</HashCode>
       <FileName>main.cpp</FileName>
     </TypeIdentifier>
   </Class>

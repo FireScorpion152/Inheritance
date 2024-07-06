@@ -166,7 +166,7 @@ public:
 	}
 };
 
-#define GRADUATE_TAKE_PARAMETERS std::string& topic
+#define GRADUATE_TAKE_PARAMETERS const std::string& topic
 #define GRADUATE_GIVE_PARAMETERS topic
 class Graduate :public Student
 {
@@ -217,6 +217,7 @@ void main()
 	Teacher teacher("White", "Walter", 50, "Chemistry", 25);
 	teacher.print();
 	cout << delimiter << endl;
+	Graduate graduate2("Storm", "Left", 23, "Chemistry", "WW", 54, 77, "OOP");
 	Graduate graduate(student, "Danger of metals");
 	graduate.print();
 

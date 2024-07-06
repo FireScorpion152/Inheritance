@@ -37,6 +37,7 @@ void fPrint(Human* group[], int n) {
 //#define INHERITANCE
 //#define GROUP_ARRAY_CONSOLE
 //#define WRITE_TO_FILE
+#define READ_FROM_FILE
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -73,6 +74,7 @@ void main()
 
 	Clear(group, sizeof(group) / sizeof(group[0]));
 	cout << delimiter << endl;
+#ifdef READ_FROM_FILE
 	std::ifstream fin("File.txt");
 	if (fin.is_open()) {
 		while (!fin.eof()) {
@@ -86,5 +88,7 @@ void main()
 	else {
 		std::cerr << "Error: File not found" << endl;
 	}
+#endif // READ_FROM_FILE
+
 
 }

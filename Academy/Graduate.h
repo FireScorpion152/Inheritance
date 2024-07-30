@@ -37,4 +37,17 @@ public:
 	{
 		return Student::print(os)<< " " << "Subject of diploma is '" << subject << "'";
 	}
+
+	std::ofstream& print(std::ofstream& ofs)const override
+	{
+		Student::print(ofs) << subject;
+		return ofs;
+	}
+
+	std::ifstream& read(std::ifstream& ifs) override
+	{
+		Student::read(ifs);
+		std::getline(ifs, subject);
+		return ifs;
+	}
 };

@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+п»ї#define _USE_MATH_DEFINES
 #include<Windows.h>
 #include<iostream>
 using namespace std;
@@ -6,7 +6,7 @@ using namespace std;
 namespace Geometry
 {
 	/*
-enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
+enum (Enumeration - РџРµСЂРµС‡РёСЃР»РµРЅРёРµ) - СЌС‚Рѕ РЅР°Р±РѕСЂ РёРјРµРЅРѕРІР°РЅРЅС‹С… РєРѕРЅСЃС‚СЂР°РЅС‚ С‚РёРїР° 'int'
 */
 	enum Color
 	{
@@ -17,7 +17,7 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 		BLUE = 0x00FF0000,
 		YELLOW = 0x0000FFFF,
 		DARK_GREEN = 0x0000AA00,
-		CONSOLE_RED = 0xCC,	//старшая 'C' - цвет фона, младшая 'C' - цвет текста.
+		CONSOLE_RED = 0xCC,	//СЃС‚Р°СЂС€Р°СЏ 'C' - С†РІРµС‚ С„РѕРЅР°, РјР»Р°РґС€Р°СЏ 'C' - С†РІРµС‚ С‚РµРєСЃС‚Р°.
 		CONSOLE_GREEN = 0xAA,
 		CONSOLE_BLUE = 0x99,
 		CONSOLE_DEFAULT = 0x07
@@ -41,7 +41,7 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 		static const int MAX_SIZE = 500;
 		static int count;
 	public:
-		//Чисто-виртуальные функции (Pure virtual function)
+		//Р§РёСЃС‚Рѕ-РІРёСЂС‚СѓР°Р»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё (Pure virtual function)
 		virtual double get_area()const = 0;
 		virtual double get_perimeter()const = 0;
 		virtual void draw()const = 0;
@@ -106,8 +106,8 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 
 		virtual void info()const
 		{
-			cout << "Площадь  фигуры: " << get_area() << endl;
-			cout << "Периметр фигуры: " << get_perimeter() << endl;
+			cout << "РџР»РѕС‰Р°РґСЊ  С„РёРіСѓСЂС‹: " << get_area() << endl;
+			cout << "РџРµСЂРёРјРµС‚СЂ С„РёРіСѓСЂС‹: " << get_perimeter() << endl;
 			draw();
 		}
 	};
@@ -156,15 +156,15 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 		void info()const override
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Длина стороны: " << get_side() << endl;
+			cout << "Р”Р»РёРЅР° СЃС‚РѕСЂРѕРЅС‹: " << get_side() << endl;
 			Shape::info();
 		}
 	};*/
 
 	class Rectangle :public Shape
 	{
-		double width;	//ширина прямоугольника
-		double height;	//высота прямоугольника
+		double width;	//С€РёСЂРёРЅР° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
+		double height;	//РІС‹СЃРѕС‚Р° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
 	public:
 		Rectangle(double width, double height, SHAPE_TAKE_PARAMETERS) :Shape(SHAPE_GIVE_PARAMETERS)
 		{
@@ -199,28 +199,28 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 		void draw()const override
 		{
 			//WinGDI - Windows Grphics Device Interface
-			//1) Получаем окно консоли:
-			//HWND hwnd = GetConsoleWindow();	//Функция GetConsoleWindow() получает окно консоли
+			//1) РџРѕР»СѓС‡Р°РµРј РѕРєРЅРѕ РєРѕРЅСЃРѕР»Рё:
+			//HWND hwnd = GetConsoleWindow();	//Р¤СѓРЅРєС†РёСЏ GetConsoleWindow() РїРѕР»СѓС‡Р°РµС‚ РѕРєРЅРѕ РєРѕРЅСЃРѕР»Рё
 			HWND hwnd = FindWindow(NULL, L"Inheritance - Microsoft Visual Studio");
-			//2) Для того чтобы рисовать, нужен контекст устройства (Device Context), 
-			//	 который есть у каждого окна. Констекст устройства можно получить при помощи функции GetDC();
-			HDC hdc = GetDC(hwnd);	//Получаем контекст окна консоли
-			//Контекст устройства - это то, на чем мы будем рисовать.
+			//2) Р”Р»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ СЂРёСЃРѕРІР°С‚СЊ, РЅСѓР¶РµРЅ РєРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР° (Device Context), 
+			//	 РєРѕС‚РѕСЂС‹Р№ РµСЃС‚СЊ Сѓ РєР°Р¶РґРѕРіРѕ РѕРєРЅР°. РљРѕРЅСЃС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР° РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ РїСЂРё РїРѕРјРѕС‰Рё С„СѓРЅРєС†РёРё GetDC();
+			HDC hdc = GetDC(hwnd);	//РџРѕР»СѓС‡Р°РµРј РєРѕРЅС‚РµРєСЃС‚ РѕРєРЅР° РєРѕРЅСЃРѕР»Рё
+			//РљРѕРЅС‚РµРєСЃС‚ СѓСЃС‚СЂРѕР№СЃС‚РІР° - СЌС‚Рѕ С‚Рѕ, РЅР° С‡РµРј РјС‹ Р±СѓРґРµРј СЂРёСЃРѕРІР°С‚СЊ.
 
-			//3) Теперь нам нужно то, чем мы будем рисовать:
-			HPEN hPen = CreatePen(PS_SOLID, line_width, color);	//hPen		- рисует контур фигуры;
-			//SP_SOLID	- сплошная линия
-			//5			- толщина линии 5 пикселов
-			HBRUSH hBrush = CreateSolidBrush(color);	//hBrush	- рисует заливку фигуры (SolidBrush - сплощной цвет)
+			//3) РўРµРїРµСЂСЊ РЅР°Рј РЅСѓР¶РЅРѕ С‚Рѕ, С‡РµРј РјС‹ Р±СѓРґРµРј СЂРёСЃРѕРІР°С‚СЊ:
+			HPEN hPen = CreatePen(PS_SOLID, line_width, color);	//hPen		- СЂРёСЃСѓРµС‚ РєРѕРЅС‚СѓСЂ С„РёРіСѓСЂС‹;
+			//SP_SOLID	- СЃРїР»РѕС€РЅР°СЏ Р»РёРЅРёСЏ
+			//5			- С‚РѕР»С‰РёРЅР° Р»РёРЅРёРё 5 РїРёРєСЃРµР»РѕРІ
+			HBRUSH hBrush = CreateSolidBrush(color);	//hBrush	- СЂРёСЃСѓРµС‚ Р·Р°Р»РёРІРєСѓ С„РёРіСѓСЂС‹ (SolidBrush - СЃРїР»РѕС‰РЅРѕР№ С†РІРµС‚)
 
-			//4) Выбираем чем, и на чем мы будем рисовать:
+			//4) Р’С‹Р±РёСЂР°РµРј С‡РµРј, Рё РЅР° С‡РµРј РјС‹ Р±СѓРґРµРј СЂРёСЃРѕРІР°С‚СЊ:
 			SelectObject(hdc, hPen);
 			SelectObject(hdc, hBrush);
 
-			//5) Рисуем фигуру:
-			::Rectangle(hdc, start_x, start_y, start_x + width, start_y + height);	//:: - Global Scope (Глобальное пространство имен)
+			//5) Р РёСЃСѓРµРј С„РёРіСѓСЂСѓ:
+			::Rectangle(hdc, start_x, start_y, start_x + width, start_y + height);	//:: - Global Scope (Р“Р»РѕР±Р°Р»СЊРЅРѕРµ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРѕ РёРјРµРЅ)
 
-			//6) hdc, hPen и hBrush занимают ресурсы, и после того, как мы ими воспользовались, ресурсы нужно освободить:
+			//6) hdc, hPen Рё hBrush Р·Р°РЅРёРјР°СЋС‚ СЂРµСЃСѓСЂСЃС‹, Рё РїРѕСЃР»Рµ С‚РѕРіРѕ, РєР°Рє РјС‹ РёРјРё РІРѕСЃРїРѕР»СЊР·РѕРІР°Р»РёСЃСЊ, СЂРµСЃСѓСЂСЃС‹ РЅСѓР¶РЅРѕ РѕСЃРІРѕР±РѕРґРёС‚СЊ:
 			DeleteObject(hBrush);
 			DeleteObject(hPen);
 
@@ -229,8 +229,8 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 		void info()const override
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Ширина прямоугольника: " << get_width() << endl;
-			cout << "Высота прямоугольника: " << get_height() << endl;
+			cout << "РЁРёСЂРёРЅР° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°: " << get_width() << endl;
+			cout << "Р’С‹СЃРѕС‚Р° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°: " << get_height() << endl;
 			Shape::info();
 		}
 	};
@@ -284,7 +284,7 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 			::Ellipse(hdc, start_x, start_y, start_x + get_diameter(), start_y + get_diameter());
 			//https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-ellipse
 
-			// Очищаем ресурсы: 
+			// РћС‡РёС‰Р°РµРј СЂРµСЃСѓСЂСЃС‹: 
 			DeleteObject(hBrush);
 			DeleteObject(hPen);
 
@@ -306,7 +306,7 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 		virtual double get_height()const = 0;
 		void info()const override
 		{
-			cout << "Высота треугольника: " << get_height() << endl;
+			cout << "Р’С‹СЃРѕС‚Р° С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°: " << get_height() << endl;
 			Shape::info();
 		}
 	};
@@ -367,7 +367,7 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 		void info()const override
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Длина стороны: " << get_side() << endl;
+			cout << "Р”Р»РёРЅР° СЃС‚РѕСЂРѕРЅС‹: " << get_side() << endl;
 			Triangle::info();
 		}
 	};
@@ -441,8 +441,8 @@ enum (Enumeration - Перечисление) - это набор именованных констрант типа 'int'
 		void info()const override
 		{
 			cout << typeid(*this).name() << endl;
-			cout << "Основание треугольника: " << get_base() << endl;
-			cout << "Сторона треугольника: " << get_side() << endl;
+			cout << "РћСЃРЅРѕРІР°РЅРёРµ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°: " << get_base() << endl;
+			cout << "РЎС‚РѕСЂРѕРЅР° С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°: " << get_side() << endl;
 			Triangle::info();
 		}
 	};
@@ -453,9 +453,9 @@ void main()
 	setlocale(LC_ALL, "");
 	//Shape shape(Color::CONSOLE_RED);
 	Geometry::Square square(50, 100, 100, 5, Geometry::Color::RED);
-	/*cout << "Длина стороны:    " << square.get_side() << endl;
-	cout << "Площадь квадрата: " << square.get_area() << endl;
-	cout << "Периметр квадрата: " << square.get_perimeter() << endl;
+	/*cout << "Р”Р»РёРЅР° СЃС‚РѕСЂРѕРЅС‹:    " << square.get_side() << endl;
+	cout << "РџР»РѕС‰Р°РґСЊ РєРІР°РґСЂР°С‚Р°: " << square.get_area() << endl;
+	cout << "РџРµСЂРёРјРµС‚СЂ РєРІР°РґСЂР°С‚Р°: " << square.get_perimeter() << endl;
 	square.draw();*/
 	square.info();
 
@@ -471,5 +471,5 @@ void main()
 	Geometry::IsoscelesTriangle iso_triangle(200, 10, 500, 200, 20, Geometry::Color::DARK_GREEN);
 	iso_triangle.info();
 
-	cout << "Количество фигур: " << disk.get_count() << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ С„РёРіСѓСЂ: " << disk.get_count() << endl;
 }

@@ -112,8 +112,8 @@ void Clear(Human* group[], const int n)
 
 //#define INHERITANCE
 //#define GROUP_ARRAY_CONSOLE
-//#define WRITE_TO_FILE
-#define READ_FROM_FILE
+#define SAVE_CHECK
+//#define LOAD_CHECK
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -131,40 +131,30 @@ void main()
 	Graduate graduate2("Shrader", "Hank", 53, "Criminalistic", "OBN", 70, 75, "How to catch Heisenberg");
 	graduate2.print();
 #endif // INHERITANCE
-	Human* group[] = {
-
-	new Student("Pinkman", "Jessie", 20, "Chemistry", "WW_220", 95, 90),
-	new Teacher("White", "Walter", 50, "Chemistry", 25),
-	new Graduate("Shrader", "Hank", 53, "Criminalistic", "OBN", 70, 75, "How to catch Heisenberg"),
-	new Student("Vercetti", "Tom", 30, "Theft", "Vice", 97,98),
-	new Teacher("Diaz", "Ricardo", 50, "Weapons Distribution",20)
-	};
 #ifdef GROUP_ARRAY_CONSOLE
 	cout << delimiter << endl;
 	Print(group, sizeof(group) / sizeof(group[0]));
 	cout << delimiter << endl;
 #endif // GROUP_ARRAY_CONSOLE
-#ifdef WRITE_TO_FILE
-	fPrint(group, sizeof(group));
-#endif // WRITE_TO_FILE
-
+#ifdef SAVE_CHECK
+	Human* group[] =
+	{
+		new Student("Pinkman", "Jessie", 20, "Chenistry", "WW_220", 95, 90),
+		new Teacher("White", "Walter", 50, "Chemistry", 25),
+		new Graduate("Schrader", "Hank", 40, "Criminalistic", "OBN", 70, 75, "How to catch Heisenberg"),
+		new Student("Vercetti", "Tommy", 30, "Theft", "Vice", 97, 98),
+		new Teacher("Diaz", "Ricardo", 50, "Weapons distribution", 20)
+	};
+	Print(group, sizeof(group) / sizeof(group[0]));
+	Save(group, sizeof(group) / sizeof(group[0]), "group.txt");
 	Clear(group, sizeof(group) / sizeof(group[0]));
-	cout << delimiter << endl;
-#ifdef READ_FROM_FILE
-	std::ifstream fin("File.txt");
-	if (fin.is_open()) {
-		while (!fin.eof()) {
-			const int SIZE = 1024;
-			char buffer[SIZE]{};
-			fin.getline(buffer, SIZE);
-			cout << buffer << endl;
-		}
-		fin.close();
-	}
-	else {
-		std::cerr << "Error: File not found" << endl;
-	}
-#endif // READ_FROM_FILE
+#endif // SAVE_CHECK
 
+#ifdef LOAD_CHECK
+	int n = 0;
+	Human** group = Load("group.txt", n);
+	Print(group, n);
+	Clear(group, n);
+#endif // LOAD_CHECK
 
 }

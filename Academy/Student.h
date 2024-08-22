@@ -63,7 +63,8 @@ public:
 	}
 
 	//				Methods:
-	std::ostream& print(std::ostream& os)const override {
+	std::ostream& print(std::ostream& os)const override
+	{
 		return Human::print(os) << " " << speciality << " " << group << " " << rating << " " << attendance;
 	}
 	std::ofstream& print(std::ofstream& ofs)const override

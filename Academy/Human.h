@@ -53,10 +53,12 @@ public:
 	}
 
 	//				Methods:
-	virtual std::ostream& print(std::ostream& os)const {
+	virtual std::ostream& print(std::ostream& os)const
+	{
+		//os << strchr(typeid(*this).name(), ' ') + 1 << ":\t";	//Оператор typeid(type | value) определяет тип значения на этапе выполнения программы.
+												//Метод name() возвращает C-string содержащую имя типа.
 		return os << last_name << " " << first_name << " " << age;
 	}
-
 	virtual std::ofstream& print(std::ofstream& ofs)const
 	{
 		ofs.width(TYPE_WIDTH);	//Метод width() задает ширину вывода.
@@ -64,7 +66,6 @@ public:
 		ofs << std::left;	//Возвращаем выравнивание по левому краю.
 		//Один вызов width() влияет только на одно выводимое значение
 		ofs << std::string(strchr(typeid(*this).name(), ' ') + 1) + ":";	//Оператор typeid(type | value) определяет тип значения на этапе выполнения программы.
-		//Метод name() возвращает C-string содержащую имя типа.
 		ofs.width(LAST_NAME_WIDTH);
 		ofs << last_name;
 		ofs.width(FIRST_NAME_WIDTH);
@@ -79,3 +80,15 @@ public:
 		return ifs;
 	}
 };
+std::ostream& operator<<(std::ostream& os, const Human& obj)
+{
+	return obj.print(os);
+}
+std::ofstream& operator<<(std::ofstream& ofs, const Human& obj)
+{
+	return obj.print(ofs);
+}
+std::ifstream& operator>>(std::ifstream& ifs, Human& obj)
+{
+	return obj.read(ifs);
+}
